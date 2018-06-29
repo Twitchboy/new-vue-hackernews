@@ -5,7 +5,7 @@
  * @email: 342766475@qq.com
  * @Date: 2018-06-28 20:38:45
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-06-28 21:39:03
+ * @Last Modified time: 2018-06-29 12:59:55
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -17,12 +17,13 @@ const { VueLoaderPlugin } = require('vue-loader')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
+    mode: isProd ? process.env.NODE_ENV : 'development',
     //控制是否生成，以及如何生成 source map
     devtool: isProd ? false : '#cheap-module-source-map',
     // 构建后输出目录设置
     output: {
-        path: path.resolve(__dirname, '../dist'),
-        publicPath:'/dist/',
+        path: path.resolve(__dirname, './dist'),
+        publicPath:'/dist/', // 后续服务端，获取编译文件就从这里
         filename: '[name].[chunkhash:8].js'
     },
     // 相关解析设置项
@@ -46,7 +47,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: ['node_modules'] // 忽略
             },
@@ -59,7 +60,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.styl(us)?$/,
+                test: /\.(styl(us)?|css)$/,
                 use: isProd
                     ? ExtractTextPlugin.extract({ // 生产环境提取 css 单独放入一个 chunk 并压缩
                             use: [
