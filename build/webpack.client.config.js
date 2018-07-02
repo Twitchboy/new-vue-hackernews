@@ -3,7 +3,7 @@ const merge = require('webpack-merge')
 const base = require('./webpack.base.config')
 // 下面的暂时用不上，先注释了
 // const SWPrecachPlugin = require('sw-precache-webpack-plugin')
-// const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin') // 为了测试开发环境，后面删除
 
@@ -38,7 +38,7 @@ const config = merge (base, {
             }
         }),
         // 服务端渲染时使用
-        // new VueSSRClientPlugin(),
+        new VueSSRClientPlugin(),
         // 生成 html 入口文件
         new HtmlWebpackPlugin({
             filename: 'index.html',

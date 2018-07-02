@@ -5,7 +5,7 @@
  * @email: 342766475@qq.com
  * @Date: 2018-06-28 20:38:45
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-06-29 12:59:55
+ * @Last Modified time: 2018-07-02 10:43:50
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -18,7 +18,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
     mode: isProd ? process.env.NODE_ENV : 'development',
-    //控制是否生成，以及如何生成 source map
+    //devtool 工具是否开启，以及如何生成 source map
     devtool: isProd ? false : '#cheap-module-source-map',
     // 构建后输出目录设置
     output: {
