@@ -5,7 +5,7 @@
  * @email: 342766475@qq.com
  * @Date: 2018-06-28 20:38:45
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-02 10:43:50
+ * @Last Modified time: 2018-07-03 15:14:43
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -22,7 +22,7 @@ module.exports = {
     devtool: isProd ? false : '#cheap-module-source-map',
     // 构建后输出目录设置
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, '../dist'),
         publicPath:'/dist/', // 后续服务端，获取编译文件就从这里
         filename: '[name].[chunkhash:8].js'
     },
@@ -75,6 +75,12 @@ module.exports = {
                     : ['vue-style-loader', 'css-loader', 'stylus-loader']
             },
         ]
+    },
+    resolve: {
+        alias: {
+          'vue$': 'vue/dist/vue.esm.js'
+        },
+        extensions: ['*', '.js', '.vue', '.json']
     },
     // 性能,配置如何展示性能提示,和做一些限制
     performance: {
